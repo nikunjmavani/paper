@@ -4,7 +4,6 @@ const postCSSUrl = require('postcss-url')
 const postCSSImports = require('postcss-import')
 const cssnano = require('cssnano')
 const postCSSMixins = require('postcss-mixins')
-const queries = require("./src/utils/algolia")
 
 module.exports = {
   siteMetadata: {
@@ -126,15 +125,6 @@ module.exports = {
         theme_color: `#292a2d`,
         display: `minimal-ui`,
         icon: `src/images/hello-icon.png`,
-      },
-    },
-	  { 
-		resolve: `gatsby-plugin-algolia`,
-      	options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
-        chunkSize: 10000, // default: 1000
       },
     },
     `gatsby-plugin-styled-components`,
