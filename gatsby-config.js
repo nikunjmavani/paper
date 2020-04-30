@@ -4,6 +4,7 @@ const postCSSUrl = require('postcss-url')
 const postCSSImports = require('postcss-import')
 const cssnano = require('cssnano')
 const postCSSMixins = require('postcss-mixins')
+const queries = require("./src/utils/algolia")
 
 module.exports = {
   siteMetadata: {
@@ -16,22 +17,26 @@ module.exports = {
       alt: '',
     },
     logoText: 'hello friend',
-    defaultTheme: 'dark',
+    defaultTheme: 'light',
     postsPerPage: 5,
     showMenuItems: 2,
-    menuMoreText: 'Show more',
+    menuMoreText: ' ',
     mainMenu: [
+      {
+        title: 'Subscribe',
+        path: '/subscribe',
+      },
       {
         title: 'About',
         path: '/about',
       },
       {
-        title: 'Showcase',
-        path: '/showcase',
+        title: 'Archive',
+        path: '/archive',
       },
-      {
-        title: 'Example',
-        path: '/example',
+		 {
+        title: 'Dashboard',
+        path: '/dashboard',
       },
     ],
   },
@@ -123,5 +128,15 @@ module.exports = {
         icon: `src/images/hello-icon.png`,
       },
     },
+	  { 
+		resolve: `gatsby-plugin-algolia`,
+      	options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
+    `gatsby-plugin-styled-components`,
   ],
 }
